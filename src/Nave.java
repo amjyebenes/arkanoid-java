@@ -12,4 +12,9 @@ public class Nave extends Actor{
     public void paint(Graphics g) {
 
     }
+
+    @Override
+    public void actua() {
+
+    }
 }

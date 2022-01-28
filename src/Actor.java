@@ -1,7 +1,6 @@
 import java.awt.*;
-import java.util.ArrayList;
 
-public abstract class Actor extends MiCanvas{
+public abstract class Actor{
 
     protected int x,y;
     protected String img;
@@ -23,10 +22,10 @@ public abstract class Actor extends MiCanvas{
         this.img = img;
     }
 
-    @Override
     public abstract void paint(Graphics g);
 
-    @Override
+    public abstract void actua();
+
     public int getX() {
         return x;
     }
@@ -35,7 +34,6 @@ public abstract class Actor extends MiCanvas{
         this.x = x;
     }
 
-    @Override
     public int getY() {
         return y;
     }
