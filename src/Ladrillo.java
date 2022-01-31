@@ -21,6 +21,5 @@ public class Ladrillo extends Actor{
 
     @Override
     public void actua() {
-
     }
 }

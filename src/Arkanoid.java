@@ -19,9 +19,6 @@ public class Arkanoid extends JFrame {
         return instance;
     }
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         ventana = new JFrame("Space Invaders");
 
@@ -78,16 +75,14 @@ public class Arkanoid extends JFrame {
         Color colores[] = {Color.RED,Color.yellow,Color.blue,Color.green,Color.CYAN,Color.MAGENTA};
         int cont= 0;
         for(int i = 0; i < 12; i++){
-            int x = (32 * i)+2;
+            int x = (32 * i);
 
             for(int j = 0; j < 20; j++) {
-                int y = 15 * j;
+                int y = 14 * j;
                 Ladrillo m = new Ladrillo(x, y,colores[cont++]);
                 if(cont > 5) cont = 0;
                 actores.add(m);
             }
-
-
         }
         return actores;
     }

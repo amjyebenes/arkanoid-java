@@ -3,8 +3,8 @@ import java.awt.geom.Ellipse2D;
 
 public class Pelota extends Actor{
 
-    protected int velX = -5;
-    protected int velY = -5;
+    protected int velX = 5;
+    protected int velY = 5;
     protected int ancho = 50;
     protected int alto = 50;
 
