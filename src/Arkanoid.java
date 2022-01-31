@@ -1,5 +1,3 @@
-import com.sun.glass.ui.Pixels;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -20,8 +18,6 @@ public class Arkanoid extends JFrame {
         return instance;
     }
 
-
-
     /**
      * Launch the application.
      */
@@ -31,7 +27,7 @@ public class Arkanoid extends JFrame {
         ventana.addWindowListener(new WindowAdapter() {
 
         });
-        ventana.setBounds(0, 0, 800, 600);
+        ventana.setBounds(0, 0, 400, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
         ArrayList<Actor> actores = creaActores();
 
@@ -47,6 +43,7 @@ public class Arkanoid extends JFrame {
             canvas.repaint();
 
             for (Actor a : actores) {
+                if(a instanceof Pelota)
                 a.actua();
             }
 
@@ -71,11 +68,16 @@ public class Arkanoid extends JFrame {
         Pelota pelota = new Pelota(300,400,50,50);
         actores.add(pelota);
 
-        for (int i = 0; i < 10; i++) {
-            int xAleatoria = (int)Math.round(Math.random()*490)+10;
-            int yAleatoria = (int)Math.round(Math.random()*190)+10;
-            Ladrillo m = new Ladrillo(xAleatoria, yAleatoria);
-            actores.add(m);
+        Color colores[] = {Color.RED,Color.yellow,Color.blue,Color.green,Color.CYAN,Color.MAGENTA};
+        int cont= 0;
+        for(int i = 0; i < 12; i++){
+            int x = (32 * i)+2;
+            for(int j = 0; j < 20; j++) {
+                int y = 15 * j;
+                Ladrillo m = new Ladrillo(x, y,colores[cont++]);
+                if(cont > 5) cont = 0;
+                actores.add(m);
+            }
         }
         return actores;
     }

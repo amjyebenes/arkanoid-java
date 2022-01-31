@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
 
 public class Pelota extends Actor{
 
@@ -37,11 +36,10 @@ public class Pelota extends Actor{
     @Override
     public void paint(Graphics g) {
         Graphics2D  g2 = (Graphics2D) g;
-        g2.setColor(Color.white);
+        g2.setColor(Color.red);
         Ellipse2D pelota = new Ellipse2D.Double(this.x, this.y, this.ancho, this.alto);
         g2.draw(pelota);
         g2.fill(pelota);
-        actua();
     }
 
     public int getVelX() {
