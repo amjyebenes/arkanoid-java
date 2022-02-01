@@ -1,6 +1,8 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MiCanvas extends Canvas {
 
@@ -17,6 +19,7 @@ public class MiCanvas extends Canvas {
 
     @Override
     public void paint(Graphics g) {
+
         if (this.strategy == null) {
             this.createBufferStrategy(2);
             strategy = getBufferStrategy();

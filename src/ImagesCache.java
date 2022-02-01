@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 public class ImagesCache {
 
     //Propiedades estáticas de esta clase
-    public static String IMAGEN_PLAYER = "barra.png";
+    public static String IMAGEN_PLAYER = "barra3.png";
+    public static String FONDO_PANTALLA = "fondo.png";
 
     // HashMap que actúa como almacén de imágenes
     private HashMap<String, BufferedImage> sprites = new HashMap<String, BufferedImage>();
