@@ -15,8 +15,9 @@ public class Ladrillo extends Actor{
         Graphics2D  g2 = (Graphics2D) g;
         g2.setColor(this.color);
         Rectangle ladrillo = new Rectangle(this.x,this.y, this.getAncho(), this.getAlto());
-        g2.draw(ladrillo);
         g2.fill(ladrillo);
+        g2.setColor(Color.black);
+        g2.draw(ladrillo);
     }
 
     @Override
