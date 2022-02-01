@@ -5,8 +5,8 @@ public class Ladrillo extends Actor{
     protected String img;
     private Color color;
 
-    public Ladrillo(int x, int y, Color color) {
-        super(x,y);
+    public Ladrillo(int x, int y, int ancho, int alto, Color color) {
+        super(x,y,ancho,alto);
         this.color = color;
     }
 
@@ -14,7 +14,7 @@ public class Ladrillo extends Actor{
     public void paint(Graphics g) {
         Graphics2D  g2 = (Graphics2D) g;
         g2.setColor(this.color);
-        Rectangle ladrillo = new Rectangle(this.x,this.y,30,10);
+        Rectangle ladrillo = new Rectangle(this.x,this.y, this.getAncho(), this.getAlto());
         g2.draw(ladrillo);
         g2.fill(ladrillo);
     }

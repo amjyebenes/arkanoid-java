@@ -5,8 +5,8 @@ public class Pelota extends Actor{
 
     protected int velX = 5;
     protected int velY = 5;
-    protected int ancho = 20;
-    protected int alto = 20;
+    protected int ancho = 10;
+    protected int alto = 10;
 
     public Pelota() {
         super();

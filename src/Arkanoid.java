@@ -66,7 +66,7 @@ public class Arkanoid extends JFrame {
     private static ArrayList<Actor> creaActores () {
         ArrayList<Actor> actores = new ArrayList<>();
 
-        Nave jugador = new Nave(300, 500);
+        Nave jugador = new Nave(200, 500,50,30);
         actores.add(jugador);
 
         Color colores[] = {Color.RED,Color.yellow,Color.blue,Color.green,Color.CYAN,Color.MAGENTA};
@@ -76,12 +76,12 @@ public class Arkanoid extends JFrame {
 
             for(int j = 0; j < 20; j++) {
                 int y = 14 * j;
-                Ladrillo m = new Ladrillo(x, y,colores[cont++]);
+                Ladrillo m = new Ladrillo(x, y,30,10,colores[cont++]);
                 if(cont > 5) cont = 0;
                 actores.add(m);
             }
         }
-        Pelota pelota = new Pelota(300,400,-5,-5);
+        Pelota pelota = new Pelota(300,400,-3,-3);
         actores.add(pelota);
         return actores;
     }
