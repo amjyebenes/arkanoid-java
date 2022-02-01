@@ -20,7 +20,7 @@ public class Arkanoid extends JFrame {
     }
 
     public static void main(String[] args) {
-        ventana = new JFrame("Space Invaders");
+        ventana = new JFrame("Arkanoid");
         ventana.addWindowListener(new WindowAdapter() {
 
         });
