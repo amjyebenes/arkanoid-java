@@ -21,11 +21,10 @@ public class Arkanoid extends JFrame {
 
     public static void main(String[] args) {
         ventana = new JFrame("Space Invaders");
-
         ventana.addWindowListener(new WindowAdapter() {
 
         });
-        ventana.setBounds(0, 0, 400, 600);
+        ventana.setBounds(0, 0, 415, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
         ArrayList<Actor> actores = creaActores();
 
@@ -66,22 +65,24 @@ public class Arkanoid extends JFrame {
     private static ArrayList<Actor> creaActores () {
         ArrayList<Actor> actores = new ArrayList<>();
 
-        Nave jugador = new Nave(300, 500);
+        Fondo fondo = new Fondo(0,0,400,600);
+        actores.add(fondo);
+
+        Nave jugador = new Nave(200, 500,50,30);
         actores.add(jugador);
 
-        Color colores[] = {Color.RED,Color.yellow,Color.blue,Color.green,Color.CYAN,Color.MAGENTA};
+        Color colores[] = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
         int cont= 0;
-        for(int i = 0; i < 12; i++){
-            int x = (32 * i);
+        for(int i = 0; i < 10; i++){
+            int x = (35 * i)+25;
 
-            for(int j = 0; j < 20; j++) {
-                int y = 14 * j;
-                Ladrillo m = new Ladrillo(x, y,colores[cont++]);
-                if(cont > 5) cont = 0;
+            for(int j = 0; j < 6; j++) {
+                int y = (40 * j) + 20;
+                Ladrillo m = new Ladrillo(x, y,30,10,colores[j]);
                 actores.add(m);
             }
         }
-        Pelota pelota = new Pelota(300,400,-5,-5);
+        Pelota pelota = new Pelota(300,400,-3,-3);
         actores.add(pelota);
         return actores;
     }

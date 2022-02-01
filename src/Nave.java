@@ -1,20 +1,16 @@
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
 
 public class Nave extends Actor{
 
 
-    public Nave(int x, int y) {
-        super(x,y);
+    public Nave(int x, int y, int ancho, int alto) {
+        super(x,y,ancho,alto,ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PLAYER));
     }
 
     @Override
     public void paint(Graphics g) {
-        Graphics2D  g2 = (Graphics2D) g;
-        g2.setColor(Color.blue);
-        Rectangle nave = new Rectangle(this.x,this.y,60,30);
-        g2.draw(nave);
-        g2.fill(nave);
+        g.drawImage(this.img, this.x, this.y, null);
     }
 
     @Override
