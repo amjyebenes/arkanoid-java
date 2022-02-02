@@ -1,9 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.Objects;
-
 public class MiCanvas extends Canvas {
 
     private ArrayList<Actor> actores;
@@ -23,7 +20,7 @@ public class MiCanvas extends Canvas {
         if (this.strategy == null) {
             this.createBufferStrategy(2);
             strategy = getBufferStrategy();
-            Toolkit.getDefaultToolkit().sync();
+            //Toolkit.getDefaultToolkit().sync(); // ESTA LINEA ES EN LINUX UNICAMENTE
         }
         g = strategy.getDrawGraphics();
         g.setColor(Color.black);

@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +8,7 @@ public class Arkanoid extends JFrame {
     private static final int FPS = 60;
     private static JFrame ventana;
     private static MiCanvas canvas;
-
+    private static Nave nave = null;
     private static Arkanoid instance = null;
 
     public static Arkanoid getInstance(){
@@ -24,11 +23,26 @@ public class Arkanoid extends JFrame {
         ventana.addWindowListener(new WindowAdapter() {
 
         });
-        ventana.setBounds(0, 0, 415, 600);
+        ventana.setBounds(500, 100, 415, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
         ArrayList<Actor> actores = creaActores();
 
-        canvas = new MiCanvas(actores);
+        ventana.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                nave.keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                nave.keyReleased(e);
+            }
+        });
+
+
+
         ventana.getContentPane().add(canvas, BorderLayout.CENTER);
         ventana.setIgnoreRepaint(true);
         ventana.setVisible(true);
@@ -60,6 +74,9 @@ public class Arkanoid extends JFrame {
                 e.printStackTrace();
             }
         } while (true);
+
+
+
     }
 
     private static ArrayList<Actor> creaActores () {
@@ -77,7 +94,7 @@ public class Arkanoid extends JFrame {
             int x = (35 * i)+25;
 
             for(int j = 0; j < 6; j++) {
-                int y = (40 * j) + 20;
+                int y = (25 * j) + 20;
                 Ladrillo m = new Ladrillo(x, y,30,10,colores[j]);
                 actores.add(m);
             }
