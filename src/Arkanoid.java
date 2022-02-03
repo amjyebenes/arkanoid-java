@@ -89,7 +89,6 @@ public class Arkanoid extends JFrame {
         actores.add(jugador);
 
         Color colores[] = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
-        int cont= 0;
         for(int i = 0; i < 10; i++){
             int x = (35 * i)+25;
 
