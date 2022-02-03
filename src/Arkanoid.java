@@ -27,6 +27,19 @@ public class Arkanoid extends JFrame {
         ventana.getContentPane().setLayout(new BorderLayout());
         ArrayList<Actor> actores = creaActores();
 
+
+
+        canvas = new MiCanvas(actores);
+        ventana.getContentPane().add(canvas, BorderLayout.CENTER);
+        ventana.setIgnoreRepaint(true);
+        ventana.setVisible(true);
+        ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ventana.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cerrarAplicacion();
+            }
+        });
         ventana.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -40,20 +53,6 @@ public class Arkanoid extends JFrame {
                 nave.keyReleased(e);
             }
         });
-
-
-
-        ventana.getContentPane().add(canvas, BorderLayout.CENTER);
-        ventana.setIgnoreRepaint(true);
-        ventana.setVisible(true);
-        ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        ventana.addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosing(WindowEvent e) {
-                cerrarAplicacion();
-            }
-        });
-
         int millisPorCadaFrame = 1000 / FPS;
         do {
             long millisAntesDeProcesarEscena = new Date().getTime();
@@ -74,8 +73,6 @@ public class Arkanoid extends JFrame {
                 e.printStackTrace();
             }
         } while (true);
-
-
 
     }
 
