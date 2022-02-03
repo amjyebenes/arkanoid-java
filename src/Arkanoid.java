@@ -30,17 +30,15 @@ public class Arkanoid extends JFrame {
 
 
         canvas = new MiCanvas(actores);
-        ventana.getContentPane().add(canvas, BorderLayout.CENTER);
-        ventana.setIgnoreRepaint(true);
-        ventana.setVisible(true);
-        ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        ventana.addWindowListener(new WindowAdapter(){
+
+        canvas.addMouseMotionListener(new MouseAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
-                cerrarAplicacion();
+            public void mouseMoved(MouseEvent e) {
+                super.mouseMoved(e);
+                nave.mover(e.getX());
             }
         });
-        ventana.addKeyListener(new KeyAdapter() {
+        canvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
@@ -53,11 +51,22 @@ public class Arkanoid extends JFrame {
                 nave.keyReleased(e);
             }
         });
+        ventana.getContentPane().add(canvas, BorderLayout.CENTER);
+        ventana.setIgnoreRepaint(true);
+        ventana.setVisible(true);
+        ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ventana.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cerrarAplicacion();
+            }
+        });
+
         int millisPorCadaFrame = 1000 / FPS;
         do {
             long millisAntesDeProcesarEscena = new Date().getTime();
 
-            canvas.repaint();
+            canvas.pintaEscena();
 
             for (Actor a : actores) {
                 a.actua();
@@ -82,8 +91,8 @@ public class Arkanoid extends JFrame {
         Fondo fondo = new Fondo(0,0,400,600);
         actores.add(fondo);
 
-        Nave jugador = new Nave(200, 500,50,30);
-        actores.add(jugador);
+        nave = new Nave(150, 500,50,30);
+        actores.add(nave);
 
         Color colores[] = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
         for(int i = 0; i < 10; i++){
