@@ -14,15 +14,14 @@ public class MiCanvas extends Canvas {
         this.actores = actores;
     }
 
-    @Override
-    public void paint(Graphics g) {
+    public void pintaEscena() {
 
         if (this.strategy == null) {
             this.createBufferStrategy(2);
             strategy = getBufferStrategy();
             //Toolkit.getDefaultToolkit().sync(); // ESTA LINEA ES EN LINUX UNICAMENTE
         }
-        g = strategy.getDrawGraphics();
+        Graphics g = strategy.getDrawGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 

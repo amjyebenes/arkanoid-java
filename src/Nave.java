@@ -23,18 +23,17 @@ public class Nave extends Actor{
         if (derecha) this.x += VELOCIDAD;
 
         // Compruebo si el player sale del canvas por cualquiera de los cuatro márgenes
-        mover(this.x, this.y);
+        mover(this.x);
     }
 
-    public void mover(int x, int y) {
+    public void mover(int x) {
         this.x = x;
-        this.y = y;
         // Controlo los casos en los que el jugador pueda salir del Canvas
         MiCanvas canvas = Arkanoid.getInstance().getCanvas(); // Referencia al objeto Canvas usado
 
         // Compruebo si el jugador sale por la derecha
-        if (this.x > (canvas.getWidth() - this.getAncho())) {
-            this.x = canvas.getWidth() - this.getAlto();
+        if ((this.x + this.getAncho()) > canvas.getWidth()) {
+            this.x = canvas.getWidth() - this.getAncho();
         }
 
         // Compruebo si el jugador sale por la izquierda
