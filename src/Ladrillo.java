@@ -23,4 +23,14 @@ public class Ladrillo extends Actor{
     @Override
     public void actua() {
     }
+
+    public void colisionaCon(Actor a) {
+        super.colisionaCon(a);
+        // Si colisionamos con un player o un disparo, eliminamos al monstruo
+        if (a instanceof PlayerShoot) {
+            Arkanoid.getInstance().eliminaActor(this);
+            ResourcesCache.getInstance().playSonido("explosion.wav");
+            Arkanoid.getInstance().incorporaNuevoActor(new Explosion(this.x, this.y));
+        }
+    }
 }

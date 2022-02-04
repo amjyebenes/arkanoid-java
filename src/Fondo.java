@@ -4,7 +4,8 @@ import java.awt.*;
 public class Fondo extends Actor{
 
     public Fondo(int x, int y, int ancho, int alto) {
-        super(x,y,ancho,alto,ImagesCache.getInstance().getImagen(ImagesCache.FONDO_PANTALLA));
+        super(x,y,ancho,alto);
+        this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_FONDO));
     }
 
     @Override

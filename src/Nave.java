@@ -8,7 +8,8 @@ public class Nave extends Actor{
 
 
     public Nave(int x, int y, int ancho, int alto) {
-        super(x,y,ancho,alto,ImagesCache.getInstance().getImagen(ImagesCache.IMAGEN_PLAYER));
+        super(x,y,ancho,alto);
+        this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_NAVE));
     }
 
     @Override
