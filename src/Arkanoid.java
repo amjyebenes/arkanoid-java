@@ -20,15 +20,9 @@ public class Arkanoid extends JFrame {
 
     public static void main(String[] args) {
         ventana = new JFrame("Arkanoid");
-        ventana.addWindowListener(new WindowAdapter() {
-
-        });
         ventana.setBounds(500, 100, 415, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
         ArrayList<Actor> actores = creaActores();
-
-
-
         canvas = new MiCanvas(actores);
 
         canvas.addMouseMotionListener(new MouseAdapter() {
