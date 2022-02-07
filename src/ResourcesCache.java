@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class ResourcesCache {
 
 	//Propiedades estáticas de esta clase
-	public static String IMAGEN_NAVE = "barra.png";
+	public static String IMAGEN_NAVE = "barra3.png";
 	public static String IMAGEN_DISPARO = "disparo.gif";
 	public static String IMAGEN_FONDO = "fondo.png";
 	
@@ -72,30 +72,14 @@ public class ResourcesCache {
 		}
 	}
 
-	
-	
-	/**
-	 * Mediante este método casteamos a imagen el recurso que nos proporciona el supertipo
-	 * @param name
-	 * @return
-	 */
 	public BufferedImage getImagen(String nombreFichero) {
 		return (BufferedImage) hmRecursos.get(nombreFichero);
 	}
 
-	
-	/**
-	 * Ejecuta un archivo de sonido de forma aislada
-	 * @param name
-	 */
 	public void playSonido(String nombreFichero) {
 		((AudioClip)hmRecursos.get(nombreFichero)).play();
 	}
-	
-	/**
-	 * Reproduce un archivo de sonido en bucle
-	 * @param name
-	 */
+
 	public void loopSonido(final String nombreFichero) {
 		((AudioClip)hmRecursos.get(nombreFichero)).loop();
 	}

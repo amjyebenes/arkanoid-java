@@ -14,7 +14,7 @@ public class Nave extends Actor{
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(this.img, this.x, this.y, null);
+        g.drawImage(this.spriteActual, this.x, this.y, null);
     }
 
     @Override

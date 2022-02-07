@@ -10,8 +10,7 @@ public class Fondo extends Actor{
 
     @Override
     public void paint(Graphics g) {
-        ImageIcon icon = new ImageIcon(ImagesCache.getInstance().getImagen(ImagesCache.FONDO_PANTALLA));
-        g.drawImage(icon.getImage(), 0, 0, Arkanoid.getInstance().getCanvas().getWidth(), Arkanoid.getInstance().getCanvas().getHeight(), null);
+        g.drawImage(this.spriteActual,0, 0, Arkanoid.getInstance().getCanvas().getWidth(), Arkanoid.getInstance().getCanvas().getHeight(), null);
     }
 
     @Override

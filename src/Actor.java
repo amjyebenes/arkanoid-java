@@ -96,13 +96,11 @@ public abstract class Actor{
         return this.spriteActual;
     }
 
-    /**
-     * @param img the img to set
-     */
+
     public void setSpriteActual(BufferedImage spriteActual) {
         this.spriteActual = spriteActual;
-        this.ancho = this.spriteActual.getWidth();
-        this.alto = this.spriteActual.getHeight();
+        this.ancho = this.getSpriteActual().getWidth();
+        this.alto = this.getSpriteActual().getHeight();
     }
 
     /**

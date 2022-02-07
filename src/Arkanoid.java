@@ -10,10 +10,12 @@ public class Arkanoid extends JFrame {
     private static JFrame ventana;
     private static MiCanvas canvas;
     private static Nave nave = null;
+    private static Fondo fondo = null;
+    private static Pelota pelota = null;
     private static Arkanoid instance = null;
     private static ArrayList<Actor> actores;
-    private java.util.List<Actor> actoresParaIncorporar = new ArrayList<Actor>();
-    private List<Actor> actoresParaEliminar = new ArrayList<Actor>();
+    private static java.util.List<Actor> actoresParaIncorporar = new ArrayList<Actor>();
+    private static List<Actor> actoresParaEliminar = new ArrayList<Actor>();
 
     public static Arkanoid getInstance(){
         if(instance == null){
@@ -23,6 +25,10 @@ public class Arkanoid extends JFrame {
     }
 
     public static void main(String[] args) {
+
+        // Realizo la carga de los recursos en memoria
+        ResourcesCache.getInstance().cargarRecursosEnMemoria();
+
         ventana = new JFrame("Arkanoid");
         ventana.setBounds(500, 100, 415, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
@@ -62,37 +68,55 @@ public class Arkanoid extends JFrame {
 
         int millisPorCadaFrame = 1000 / FPS;
         do {
+            // No sé cuando se va a mostar la ventana y hasta entonces no puedo utilizar la instrucción canvas.requestFocus();
+            // Por tanto, en este bucle compruebo constantemente si el canvas tiene el foco y, si no lo tiene, se lo doy
+            if (ventana.getFocusOwner() != null && !ventana.getFocusOwner().equals(canvas)) {
+                canvas.requestFocus();
+            }
+
+
+            // Redibujo la escena tantas veces por segundo como indique la variable FPS
+            // Tomo los millis actuales
             long millisAntesDeProcesarEscena = new Date().getTime();
 
+            // Redibujo la escena
             canvas.pintaEscena();
 
+            // Recorro todos los actores, consiguiendo que cada uno de ellos actúe
             for (Actor a : actores) {
                 a.actua();
             }
 
+            // Tras hacer que cada actor actúe y antes de agregar y eliminar actores, detecto colisiones
+            detectaColisiones();
+
+            // Acualizo los actores, incorporando los nuevos y eliminando los que ya no se quieren
+            actualizaActores();
+
+            // Calculo los millis que debemos parar el proceso, generando 60 FPS.
             long millisDespuesDeProcesarEscena = new Date().getTime();
             int millisDeProcesamientoDeEscena = (int) (millisDespuesDeProcesarEscena - millisAntesDeProcesarEscena);
             int millisPausa = millisPorCadaFrame - millisDeProcesamientoDeEscena;
             millisPausa = Math.max(millisPausa, 0);
+            // "Duermo" el proceso principal durante los milllis calculados.
             try {
                 Thread.sleep(millisPausa);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } while (true);
-
     }
 
     private static ArrayList<Actor> creaActores () {
         actores = new ArrayList<>();
 
-//        Fondo fondo = new Fondo(0,0,400,600);
-//        actores.add(fondo);
+        fondo = new Fondo(0,0,400,600);
+        actores.add(fondo);
 
         nave = new Nave(150, 500,50,30);
         actores.add(nave);
 
-        Color colores[] = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
+        Color[] colores = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
         for(int i = 0; i < 10; i++){
             int x = (35 * i)+25;
 
@@ -102,7 +126,7 @@ public class Arkanoid extends JFrame {
                 actores.add(m);
             }
         }
-        Pelota pelota = new Pelota(300,400,-3,-3);
+        pelota = new Pelota(300,400,-3,-3);
         actores.add(pelota);
         return actores;
     }
@@ -121,7 +145,7 @@ public class Arkanoid extends JFrame {
         return canvas;
     }
     public void incorporaNuevoActor (Actor a) {
-        this.actoresParaIncorporar.add(a);
+        actoresParaIncorporar.add(a);
     }
 
     /**
@@ -129,27 +153,27 @@ public class Arkanoid extends JFrame {
      * @param a
      */
     public void eliminaActor (Actor a) {
-        this.actoresParaEliminar.add(a);
+        actoresParaEliminar.add(a);
     }
 
     /**
      * Incorpora los actores nuevos al juego y elimina los que corresponden
      */
-    private void actualizaActores () {
+    private static void actualizaActores() {
         // Incorporo los nuevos actores
-        this.actores.addAll(actoresParaIncorporar);
-        this.actoresParaIncorporar.clear(); // Limpio la lista de actores a incorporar, ya están incorporados
+        actores.addAll(actoresParaIncorporar);
+        actoresParaIncorporar.clear(); // Limpio la lista de actores a incorporar, ya están incorporados
 
         // Elimino los actores que se deben eliminar
-        this.actores.removeAll(actoresParaEliminar);
-        this.actoresParaEliminar.clear(); // Limpio la lista de actores a eliminar, ya los he eliminado
+        actores.removeAll(actoresParaEliminar);
+        actoresParaEliminar.clear(); // Limpio la lista de actores a eliminar, ya los he eliminado
     }
 
 
     /**
      * Detecta colisiones entre actores e informa a los dos
      */
-    private void detectaColisiones() {
+    private static void detectaColisiones() {
         // Una vez que cada actor ha actuado, intento detectar colisiones entre los actores y notificarlas. Para detectar
         // estas colisiones, no nos queda más remedio que intentar detectar la colisión de cualquier actor con cualquier otro
         // sólo con la excepción de no comparar un actor consigo mismo.
