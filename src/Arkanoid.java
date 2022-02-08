@@ -183,18 +183,17 @@ public class Arkanoid extends JFrame {
             // Creo un rectángulo para este actor.
             Rectangle rect1 = new Rectangle(actor1.getX(), actor1.getY(), actor1.getAncho(), actor1.getAlto());
             // Compruebo un actor con cualquier otro actor
-            for (Actor actor2 : actores) {
                 // Evito comparar un actor consigo mismo, ya que eso siempre provocaría una colisión y no tiene sentido
-                if (!actor1.equals(actor2)) {
+                if (!actor1.equals(pelota) && !(actor1 instanceof Fondo)) {
                     // Formo el rectángulo del actor 2
-                    Rectangle rect2 = new Rectangle(actor2.getX(), actor2.getY(), actor2.getAncho(), actor2.getAlto());
+                    Rectangle rect2 = new Rectangle(pelota.getX(), pelota.getY(), pelota.getAncho(), pelota.getAlto());
                     // Si los dos rectángulos tienen alguna intersección, notifico una colisión en los dos actores
                     if (rect1.intersects(rect2)) {
-                        actor1.colisionaCon(actor2); // El actor 1 colisiona con el actor 2
-                        actor2.colisionaCon(actor1); // El actor 2 colisiona con el actor 1
+                        actor1.colisionaCon(pelota); // El actor 1 colisiona con el actor 2
+                        pelota.colisionaCon(actor1); // El actor 2 colisiona con el actor 1
                     }
                 }
             }
         }
     }
-}
+

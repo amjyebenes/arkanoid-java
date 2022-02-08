@@ -57,4 +57,15 @@ public class Pelota extends Actor{
     public void setVelY(int velY) {
         this.velY = velY;
     }
+
+    public void colisionaCon(Actor a) {
+        System.out.println("Pelota colisiona con " + a);
+        if( a instanceof  Ladrillo) {
+            Arkanoid.getInstance().eliminaActor(a);
+          //  this.velX *= -1;
+         //   this.velY *= -1;
+        }
+    }
+
+
 }

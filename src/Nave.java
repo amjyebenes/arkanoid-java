@@ -64,4 +64,12 @@ public class Nave extends Actor{
                 derecha = false; break;
         }
     }
+    private void disparo () {
+        int xDisparo = this.x + this.getAncho()/2 - PlayerShoot.ANCHO/2;
+        PlayerShoot disparo = new PlayerShoot(xDisparo, this.y); // Creo el nuevo actor
+        // Incorporo el nuevo actor al juego
+        Arkanoid.getInstance().incorporaNuevoActor(disparo);
+
+        ResourcesCache.getInstance().playSonido("missile.wav");
+    }
 }
