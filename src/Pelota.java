@@ -5,15 +5,9 @@ public class Pelota extends Actor{
 
     protected int velX = 5;
     protected int velY = 5;
-    protected int ancho = 10;
-    protected int alto = 10;
 
-    public Pelota() {
-        super();
-    }
-
-    public Pelota(int x, int y, int velX, int velY) {
-        super(x,y);
+    public Pelota(int x, int y) {
+        super(x,y,10,10); // ESTO ES LO QUE DABA ERROR, TOTE
         this.velX = velX;
         this.velY = velY;
     }
@@ -22,13 +16,13 @@ public class Pelota extends Actor{
     public void actua(){
         this.x += this.velX;
 
-        if(this.x < 0 || (this.x + this.ancho) > Arkanoid.getInstance().getCanvas().getWidth()){
+        if(this.x < 0 || (this.x + this.getAncho()) > Arkanoid.getInstance().getCanvas().getWidth()){
             this.velX *= -1;
         }
 
         this.y += this.velY;
 
-        if(this.y < 0 || (this.y + this.alto) > Arkanoid.getInstance().getCanvas().getHeight()){
+        if(this.y < 0 || (this.y + this.getAlto()) > Arkanoid.getInstance().getCanvas().getHeight()){
             this.velY *= -1;
         }
     }
@@ -37,7 +31,7 @@ public class Pelota extends Actor{
     public void paint(Graphics g) {
         Graphics2D  g2 = (Graphics2D) g;
         g2.setColor(Color.red);
-        Ellipse2D pelota = new Ellipse2D.Double(this.x, this.y, this.ancho, this.alto);
+        Ellipse2D pelota = new Ellipse2D.Double(this.x, this.y, this.getAncho(), this.getAlto());
         g2.draw(pelota);
         g2.fill(pelota);
     }
@@ -62,8 +56,12 @@ public class Pelota extends Actor{
         System.out.println("Pelota colisiona con " + a);
         if( a instanceof  Ladrillo) {
             Arkanoid.getInstance().eliminaActor(a);
-          //  this.velX *= -1;
-         //   this.velY *= -1;
+            this.velX *= 1;
+            this.velY *= -1;
+        }
+        if( a instanceof  Nave) {
+            this.velX *= 1;
+            this.velY *= -1;
         }
     }
 

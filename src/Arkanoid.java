@@ -126,7 +126,7 @@ public class Arkanoid extends JFrame {
                 actores.add(m);
             }
         }
-        pelota = new Pelota(300,400,-3,-3);
+        pelota = new Pelota(300,400);
         actores.add(pelota);
         return actores;
     }
