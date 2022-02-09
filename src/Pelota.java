@@ -3,8 +3,8 @@ import java.awt.geom.Ellipse2D;
 
 public class Pelota extends Actor{
 
-    protected int velX = 4;
-    protected int velY = 4;
+    protected int velX = 5;
+    protected int velY = 5;
 
     public Pelota(int x, int y) {
         super(x,y,10,10); // ESTO ES LO QUE DABA ERROR, TOTE
@@ -21,6 +21,14 @@ public class Pelota extends Actor{
         this.y += this.velY;
 
         if(this.y < 0 || (this.y + this.getAlto()) > Arkanoid.getInstance().getCanvas().getHeight()){
+            this.velY *= -1;
+        }
+
+        if(this.x + this.velX > Arkanoid.getInstance().getCanvas().getWidth()|| this.x + this.velX < 0) {
+            this.velX *= -1;
+        }
+
+        if(this.y + this.velY > Arkanoid.getInstance().getCanvas().getHeight() || this.y + this.velY < 0) {
             this.velY *= -1;
         }
     }
