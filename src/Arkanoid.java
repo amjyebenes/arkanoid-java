@@ -67,6 +67,22 @@ public class Arkanoid extends JFrame {
         });
 
         int millisPorCadaFrame = 1000 / FPS;
+
+
+
+        try {
+            ResourcesCache.getInstance().playSonido("inicioronda.wav");
+            fondo = new Fondo(0,0,415,600,2);
+            actores.add(fondo);
+            canvas.pintaEscena();
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        actores.remove(fondo);
+
+
+
         do {
             // No sé cuando se va a mostar la ventana y hasta entonces no puedo utilizar la instrucción canvas.requestFocus();
             // Por tanto, en este bucle compruebo constantemente si el canvas tiene el foco y, si no lo tiene, se lo doy
@@ -86,6 +102,7 @@ public class Arkanoid extends JFrame {
             for (Actor a : actores) {
                 a.actua();
             }
+
 
             // Tras hacer que cada actor actúe y antes de agregar y eliminar actores, detecto colisiones
             detectaColisiones();
@@ -110,19 +127,19 @@ public class Arkanoid extends JFrame {
     private static ArrayList<Actor> creaActores () {
         actores = new ArrayList<>();
 
-        fondo = new Fondo(0,0,400,600);
+        fondo = new Fondo(0,0,400,600,1);
         actores.add(fondo);
 
         nave = new Nave(150, 500,50,30);
         actores.add(nave);
 
         Color[] colores = {Color.RED,Color.yellow,Color.white,Color.green,Color.CYAN,Color.MAGENTA, Color.green};
-        for(int i = 0; i < 10; i++){
-            int x = (35 * i)+25;
+        for(int i = 0; i < 9; i++){
+            int x = (41 * i)+15;
 
             for(int j = 0; j < 6; j++) {
-                int y = (25 * j) + 20;
-                Ladrillo m = new Ladrillo(x, y,30,10,colores[j]);
+                int y = (18 * j) + 20;
+                Ladrillo m = new Ladrillo(x, y,40,16,colores[j]);
                 actores.add(m);
             }
         }

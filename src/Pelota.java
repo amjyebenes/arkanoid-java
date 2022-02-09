@@ -3,13 +3,11 @@ import java.awt.geom.Ellipse2D;
 
 public class Pelota extends Actor{
 
-    protected int velX = 5;
-    protected int velY = 5;
+    protected int velX = 4;
+    protected int velY = 4;
 
     public Pelota(int x, int y) {
         super(x,y,10,10); // ESTO ES LO QUE DABA ERROR, TOTE
-        this.velX = velX;
-        this.velY = velY;
     }
 
     @Override
@@ -59,6 +57,7 @@ public class Pelota extends Actor{
             this.velY *= -1;
         }
         if( a instanceof  Nave) {
+            ResourcesCache.getInstance().playSonido("rebotanave.wav");
             this.velX *= 1;
             this.velY *= -1;
         }
