@@ -12,6 +12,7 @@ public class ResourcesCache {
 	public static String IMAGEN_NAVE = "barra3.png";
 	public static String IMAGEN_DISPARO = "disparo.gif";
 	public static String IMAGEN_FONDO = "fondo.png";
+	public static String IMAGEN_FONDOINICIO = "fondoINICIO.png";
 	
 	// HashMap que actúa como almacén de imágenes
 	private HashMap<String, Object> hmRecursos = new HashMap<String, Object>();
