@@ -89,40 +89,42 @@ public class Arkanoid extends JFrame {
             if (ventana.getFocusOwner() != null && !ventana.getFocusOwner().equals(canvas)) {
                 canvas.requestFocus();
             }
+            if(actores.size()>3) {
 
 
-            // Redibujo la escena tantas veces por segundo como indique la variable FPS
-            // Tomo los millis actuales
-            long millisAntesDeProcesarEscena = new Date().getTime();
+                // Redibujo la escena tantas veces por segundo como indique la variable FPS
+                // Tomo los millis actuales
+                long millisAntesDeProcesarEscena = new Date().getTime();
 
-            // Redibujo la escena
-            canvas.pintaEscena();
+                // Redibujo la escena
+                canvas.pintaEscena();
 
-            // Recorro todos los actores, consiguiendo que cada uno de ellos actúe
-            for (Actor a : actores) {
-                a.actua();
-            }
+                // Recorro todos los actores, consiguiendo que cada uno de ellos actúe
+                for (Actor a : actores) {
+                    a.actua();
+                }
 
 
-            // Tras hacer que cada actor actúe y antes de agregar y eliminar actores, detecto colisiones
-            detectaColisiones();
+                // Tras hacer que cada actor actúe y antes de agregar y eliminar actores, detecto colisiones
+                detectaColisiones();
 
-            // Acualizo los actores, incorporando los nuevos y eliminando los que ya no se quieren
-            actualizaActores();
+                // Acualizo los actores, incorporando los nuevos y eliminando los que ya no se quieren
+                actualizaActores();
 
-            // Calculo los millis que debemos parar el proceso, generando 60 FPS.
-            long millisDespuesDeProcesarEscena = new Date().getTime();
-            int millisDeProcesamientoDeEscena = (int) (millisDespuesDeProcesarEscena - millisAntesDeProcesarEscena);
-            int millisPausa = millisPorCadaFrame - millisDeProcesamientoDeEscena;
-            millisPausa = Math.max(millisPausa, 0);
-            // "Duermo" el proceso principal durante los milllis calculados.
-            try {
-                Thread.sleep(millisPausa);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(actores.size()<=3){
+                // Calculo los millis que debemos parar el proceso, generando 60 FPS.
+                long millisDespuesDeProcesarEscena = new Date().getTime();
+                int millisDeProcesamientoDeEscena = (int) (millisDespuesDeProcesarEscena - millisAntesDeProcesarEscena);
+                int millisPausa = millisPorCadaFrame - millisDeProcesamientoDeEscena;
+                millisPausa = Math.max(millisPausa, 0);
+                // "Duermo" el proceso principal durante los milllis calculados.
                 try {
+                    Thread.sleep(millisPausa);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                try {
+                    actores.clear();
                     ResourcesCache.getInstance().playSonido("final.wav");
                     fondo = new Fondo(0,0,415,600,3);
                     actores.add(fondo);
