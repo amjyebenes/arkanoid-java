@@ -34,7 +34,7 @@ public class PlayerShoot extends Actor{
         super.colisionaCon(a);
         // Si colisionamos con monstruo, eliminamos el disparo
         if (a instanceof Ladrillo) {
-            Arkanoid.getInstance().eliminaActor(this);
+            Arkanoid.getInstance().eliminaActor(a);
         }
     }
 }
