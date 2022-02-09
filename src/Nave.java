@@ -49,6 +49,9 @@ public class Nave extends Actor{
                 izquierda = true; break;
             case KeyEvent.VK_RIGHT:
                 derecha = true; break;
+            case KeyEvent.VK_SPACE:
+                disparo();
+        
         }
     }
 

@@ -26,7 +26,12 @@ public class Ladrillo extends Actor{
 
     public void colisionaCon(Actor a) {
         super.colisionaCon(a);
-        ResourcesCache.getInstance().playSonido("rebotaladrillo.wav");
+        if( a instanceof Pelota) {
+            ResourcesCache.getInstance().playSonido("rebotaladrillo.wav");
+        }
+        if( a instanceof PlayerShoot){
+            Arkanoid.getInstance().eliminaActor(a);
+        }
         Arkanoid.getInstance().incorporaNuevoActor(new Explosion(this.x, this.y));
     }
 }
