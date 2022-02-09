@@ -53,7 +53,6 @@ public class Pelota extends Actor{
     }
 
     public void colisionaCon(Actor a) {
-        System.out.println("Pelota colisiona con " + a);
         if( a instanceof  Ladrillo) {
             Arkanoid.getInstance().eliminaActor(a);
             this.velX *= 1;
