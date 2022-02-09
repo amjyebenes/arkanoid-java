@@ -121,6 +121,17 @@ public class Arkanoid extends JFrame {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if(actores.size()<=3){
+                try {
+                    ResourcesCache.getInstance().playSonido("final.wav");
+                    fondo = new Fondo(0,0,415,600,3);
+                    actores.add(fondo);
+                    canvas.pintaEscena();
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         } while (true);
     }
 

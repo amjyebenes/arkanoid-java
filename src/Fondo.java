@@ -7,8 +7,9 @@ public class Fondo extends Actor{
         super(x,y,ancho,alto);
         if(opcion==1) {
             this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_FONDO));
-        }
-        else this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_FONDOINICIO));
+        }else if(opcion ==2) {
+            this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_FONDOINICIO));
+        }else this.setSpriteActual(ResourcesCache.getInstance().getImagen(ResourcesCache.IMAGEN_FONDOFINAL));
     }
 
     @Override
