@@ -61,12 +61,10 @@ public class Pelota extends Actor{
     public void colisionaCon(Actor a) {
         if( a instanceof  Ladrillo) {
             Arkanoid.getInstance().eliminaActor(a);
-            this.velX *= 1;
             this.velY *= -1;
         }
         if( a instanceof  Nave) {
             ResourcesCache.getInstance().playSonido("rebotanave.wav");
-            this.velX *= 1;
             this.velY *= -1;
         }
     }
