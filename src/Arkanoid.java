@@ -14,7 +14,7 @@ public class Arkanoid extends JFrame {
     private static Pelota pelota = null;
     private static Arkanoid instance = null;
     private static ArrayList<Actor> actores;
-    private static java.util.List<Actor> actoresParaIncorporar = new ArrayList<Actor>();
+    private static List<Actor> actoresParaIncorporar = new ArrayList<Actor>();
     private static List<Actor> actoresParaEliminar = new ArrayList<Actor>();
 
     public static Arkanoid getInstance(){
@@ -24,11 +24,7 @@ public class Arkanoid extends JFrame {
         return instance;
     }
 
-    public static void main(String[] args) {
-
-        // Realizo la carga de los recursos en memoria
-        ResourcesCache.getInstance().cargarRecursosEnMemoria();
-
+    public Arkanoid(){
         ventana = new JFrame("Arkanoid");
         ventana.setBounds(500, 100, 415, 600);
         ventana.getContentPane().setLayout(new BorderLayout());
@@ -65,10 +61,17 @@ public class Arkanoid extends JFrame {
                 cerrarAplicacion();
             }
         });
+    }
 
+    public static void main(String[] args) {
+        // Realizo la carga de los recursos en memoria
+        ResourcesCache.getInstance().cargarRecursosEnMemoria();
+        Arkanoid.getInstance().juego();
+
+    }
+
+    public void juego(){
         int millisPorCadaFrame = 1000 / FPS;
-
-
 
         try {
             ResourcesCache.getInstance().playSonido("inicioronda.wav");
