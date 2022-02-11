@@ -92,7 +92,7 @@ public class Arkanoid extends JFrame {
             if (ventana.getFocusOwner() != null && !ventana.getFocusOwner().equals(canvas)) {
                 canvas.requestFocus();
             }
-            if(actores.size()>3) {
+
 
 
                 // Redibujo la escena tantas veces por segundo como indique la variable FPS
@@ -125,7 +125,7 @@ public class Arkanoid extends JFrame {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }else{
+            if(actores.size()<4) {
                 try {
                     actores.clear();
                     ResourcesCache.getInstance().playSonido("final.wav");
